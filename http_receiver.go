@@ -1,3 +1,5 @@
+// +build !js,!wasm
+
 package flex
 
 import (
@@ -349,8 +351,10 @@ func (rec *httpReceiver) Start(flex Flex, taskReceivedCallback func(task *Task) 
 		//WriteTimeout: 10 * time.Second,
 	}
 
-	fmt.Println(fmt.Sprintf("Service listening on %s", address))
 	rec.server.ListenAndServe()
+
+	fmt.Println(fmt.Sprintf("Service listening on %s", address))
+
 	return nil
 }
 

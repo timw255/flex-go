@@ -8,7 +8,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/json-iterator/go"
+	jsoniter "github.com/json-iterator/go"
 	"github.com/timw255/flex-go/util"
 )
 
@@ -151,8 +151,9 @@ func NewService(options *Options, initializer func(err error, flex Flex)) {
 			return
 		}
 
-		terminated = true
 		fmt.Println(fmt.Sprintf("Caught %+v, initiating graceful shutdown. Press ctrl-c or send SIGTERM/SIGINT to force-quit immediately.", sig))
+
+		terminated = true
 
 		c := make(chan bool, 1)
 		go func() {
@@ -175,8 +176,9 @@ func NewService(options *Options, initializer func(err error, flex Flex)) {
 
 	initializer(nil, s)
 
-	err := rec.Start(s, taskReceivedCallback, "")
-	_ = err
+	rec.Start(s, taskReceivedCallback, "")
+
+	return
 }
 
 func terminate(err error) {

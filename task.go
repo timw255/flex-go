@@ -36,7 +36,7 @@ type Task struct {
 	AuthKey          string            `json:"authKey"`
 	BaaSURL          string            `json:"baasUrl"`
 	ContainerID      string            `json:"containerId"`
-	DiscoveryObjects discoveryObjects
+	DiscoveryObjects discoveryObjects  `json:"discoveryObjects"`
 	Endpoint         string
 	HookType         string   `json:"hookType"`
 	Method           string   `json:"method"`
